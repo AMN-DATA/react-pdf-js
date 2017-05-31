@@ -258,6 +258,8 @@ class Pdf extends React.Component {
       const canvasContext = canvas.getContext('2d');
       const { scale, rotate } = this.props;
       const viewport = page.getViewport(scale, rotate);
+      var calcScale = (this.props.width || viewport.width) / viewport.width;
+      viewport = page.getViewport(calcScale, rotate);
       canvas.height = viewport.height;
       canvas.width = viewport.width;
       page.render({ canvasContext, viewport });
