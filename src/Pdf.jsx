@@ -46,6 +46,7 @@ class Pdf extends React.Component {
     onPageComplete: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object,
+    width: PropTypes.number,
   };
 
   static defaultProps = {
@@ -257,8 +258,8 @@ class Pdf extends React.Component {
       const { canvas } = this;
       const canvasContext = canvas.getContext('2d');
       const { scale, rotate } = this.props;
-      const viewport = page.getViewport(scale, rotate);
-      var calcScale = (this.props.width || viewport.width) / viewport.width;
+      let viewport = page.getViewport(scale, rotate);
+      const calcScale = (this.props.width || viewport.width) / viewport.width;
       viewport = page.getViewport(calcScale, rotate);
       canvas.height = viewport.height;
       canvas.width = viewport.width;
